@@ -6,6 +6,7 @@ WORKDIR /app
 COPY go.mod go.sum .
 COPY *.go .
 COPY *.tpl .
+COPY static/ static/
 
 RUN go mod download
 
