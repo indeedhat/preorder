@@ -1,0 +1,4 @@
+github.com/indeedhat/icl v0.0.0-20241201163654-3fd7f368648f h1:NqTc5MgNmhuoNIm06/h0MhxPc8ojd2tM98Lr3/Iyjug=
+github.com/indeedhat/icl v0.0.0-20241201163654-3fd7f368648f/go.mod h1:ADr9N4x85iPXFOyj7sbWp7IfzCHn/4a9tAI+T8754Lk=
+github.com/joho/godotenv v1.5.1 h1:7eLL/+HRGLY0ldzfGMeQkb7vMd0as4CfYvUVzLqw0N0=
+github.com/joho/godotenv v1.5.1/go.mod h1:f4LDr5Voq0i2e/R5DDNOoa2zzDfwtkZa6DnEwAbqwq4=
