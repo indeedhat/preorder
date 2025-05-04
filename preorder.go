@@ -13,6 +13,7 @@ type preorderList struct {
 
 type preorder struct {
 	Title       string `icl:"title"`
+	Series      string `icl:"series"`
 	User        string `icl:"user"`
 	ReleaseDate string `icl:"release_date"`
 }

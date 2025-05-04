@@ -65,6 +65,7 @@ func handleGet(rw http.ResponseWriter, r *http.Request) {
 
 type createRequest struct {
 	Title       string `json:"title"`
+	Series      string `json:"series"`
 	User        string `json:"user"`
 	ReleaseDate string `json:"release_date"`
 }

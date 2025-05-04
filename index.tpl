@@ -53,6 +53,10 @@
             article h3 {
                 flex-grow: 1;
             }
+            article h3 .series {
+                font-size: 12px;
+                color: #666;
+            }
             article .meta {
                 display: flex;
                 align-items: end;
@@ -84,6 +88,10 @@
                         <input type="text" name="title" required />
                     </label>
                     <label>
+                        <span>Book Series</span>
+                        <input type="text" name="series" required />
+                    </label>
+                    <label>
                         <span>User</span>
                         <input type="text" name="user" />
                     </label>
@@ -98,7 +106,12 @@
                 {{ if .Preorders }}
                     {{ range .Preorders }}
                         <article>
-                            <h3>{{ .Title }}</h3>
+                            <h3>
+                                {{ .Title }}
+                                {{ if .Series }}
+                                    <div class="series">{{ .Series }}</div>
+                                {{ end }}
+                            </h3>
                             <div class="meta">
                                <time title="Release date">{{ or .ReleaseDate "Unknown" }}</time>
                                <div class="name">{{ or .User "Anonymous" }}</div>
@@ -121,6 +134,7 @@
                     headers: { "Content-Type": "application/x-www-form-urlencoded" },
                     body: JSON.stringify({
                         title: data.get("title"),
+                        series: data.get("series") || "",
                         user: data.get("user") || "",
                         release_date: data.get("release_date") || ""
                     })
