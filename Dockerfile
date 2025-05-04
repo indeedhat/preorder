@@ -9,7 +9,7 @@ COPY *.tpl .
 
 RUN go mod download
 
-RUN CGO_ENABLED=0  go build -o preorder-server
+RUN CGO_ENABLED=0 go build -o preorder-server
 
 # Deploy the application binary into a lean image
 FROM alpine:3.20 AS production

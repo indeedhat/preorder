@@ -16,8 +16,12 @@ import (
 
 var saveMux sync.Mutex
 
+//go:embed static/*
+var staticFs embed.FS
+
 //go:embed index.tpl
 var indexFs embed.FS
+
 var indexTpl *template.Template
 
 func main() {
@@ -29,6 +33,7 @@ func main() {
 	}
 
 	mux := http.NewServeMux()
+	mux.Handle("GET /static/", http.FileServer(http.FS(staticFs)))
 	mux.HandleFunc("GET /", handleGet)
 	mux.HandleFunc("POST /create", handleCreate)
 

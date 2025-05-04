@@ -2,76 +2,9 @@
 <!Doctype html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Preorder List</title>
-        <style>
-            * {
-                box-sizing: border-box;
-            }
-            html, body {
-                margin: 0;
-                padding: 0;
-            }
-
-            header {
-                padding: 8px;
-                border-bottom: 1px solid black;
-                display: flex;
-            }
-            header h1 {
-                flex-grow: 1
-            }
-            header .search {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            section {
-                padding: 8px;
-                border-bottom: 1px solid black;
-            }
-
-            section#form {
-
-            }
-            section#form label {
-                display: block;
-            }
-            section#form label span {
-                display: inline-block;
-                width: 100px;
-            }
-
-            article {
-                display: flex;
-                margin: 0 8px;
-                border-bottom: 1px solid #ccc;
-            }
-            article:last-of-type {
-                border: none;
-            }
-            article h3 {
-                flex-grow: 1;
-            }
-            article h3 .series {
-                font-size: 12px;
-                color: #666;
-            }
-            article .meta {
-                display: flex;
-                align-items: end;
-                justify-content: center;
-                flex-direction: column;
-            }
-            article .meta time {
-                font-weight: bold;
-                color: #aaa;
-            }
-            article .meta .name {
-                font-weight: bold;
-                color: #666;
-            }
-        </style>
+        <link rel="stylesheet" href="/static/main.css" />
     </head>
     <body>
         <header>
@@ -123,50 +56,7 @@
                 {{ end }}
             </section>
         </main>
-        <script>
-            const $form = document.querySelector("section#form form")
-            $form.addEventListener("submit", async e => {
-                e.preventDefault()
-
-                const data = new FormData($form)
-                const resp = await fetch("/create", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                    body: JSON.stringify({
-                        title: data.get("title"),
-                        series: data.get("series") || "",
-                        user: data.get("user") || "",
-                        release_date: data.get("release_date") || ""
-                    })
-                })
-
-                if (!resp.ok) {
-                    alert(`Error: ${resp.text()}`)
-                    return;
-                }
-
-                location.reload()
-            })
-
-            const $search = document.getElementById("search")
-            $search.addEventListener("keyup", e => {
-                console.log("keyup")
-                const $articles = document.getElementsByTagName("article")
-                for (let i = 0; i < $articles.length; i++) {
-                    const $article = $articles[i]
-                    if ($search.value === "") {
-                        $article.style.display = "flex";
-                        continue
-                    }
-
-                    const title = $article.querySelector("h3").innerHTML.toLowerCase()
-                    console.log({ $article, title, search: $search.value.toLowerCase(), cond:  title.includes($search.value.toLowerCase()) })
-                    $article.style.display = title.includes($search.value.toLowerCase())
-                        ? "flex"
-                        : "none"
-                }
-            })
-        </script>
+        <script src="/static/main.js"></script>
     </body>
 </html>
 {{ end }}
